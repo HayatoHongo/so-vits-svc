@@ -349,11 +349,12 @@ def get_hparams_from_dir(model_dir):
   hparams.model_dir = model_dir
   return hparams
 
-
+import os
 def get_hparams_from_file(config_path, infer_mode = False):
   with open(config_path, "r") as f:
     data = f.read()
   config = json.loads(data)
+  print("Current working directory:", os.getcwd())
   hparams =HParams(**config) if not infer_mode else InferHParams(**config)
   return hparams
 
